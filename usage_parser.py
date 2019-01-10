@@ -2,8 +2,7 @@ import sys
 import csv
 
 args = sys.argv
-# filename = args[0]
-filename = '../COD891/1/data/1.txt'
+filename = args[1]
 raw_file = '--' + ''.join(map(str,open(filename,'rb').readlines())) + '--0'
 
 sections = []
@@ -27,10 +26,12 @@ data.pop(0)
 data_tabular = []
 for row in data:
     extracted = row.split()
-    extracted.pop(0)
-    extracted.pop(-1)
-    data_tabular += [extracted]
+    if(len(extracted)!=0):
+        extracted.pop(0)
+        extracted.pop(-1)
+        data_tabular += [extracted]
 
-with open('tmp.csv','w') as my_csv:
+directory = args[2]
+with open(directory + "/" + (((filename.split('/'))[-1]).split('.'))[0] + '.csv','w') as my_csv:
     writer = csv.writer(my_csv,delimiter=',')
     writer.writerows(data_tabular)
