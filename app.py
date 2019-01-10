@@ -1,8 +1,49 @@
-
+import sys
 from math import *
 
 chargerEffeciency = 1
 conversionConstant = 1 #don't know @check @sunil
+"""
+	Some global parameters for speeding up dp
+
+"""
+Tmax = -1
+a_vec = []
+Cel_vec = []
+stateOfCharge_vec = []
+
+
+def a(t):
+	if Tmax == -1:
+		sys.stderr.write("Tmax not set yet :)")
+		sys.exit(-1)
+	else:
+		return a_vec[T-t]
+
+def  Cel(t):
+	if Tmax == -1:
+		sys.stderr.write("Tmax not set yet :)")
+		sys.exit(-1)
+	else:
+		return Cel_vec[T-t]
+def  stateOfCharge(t):
+	if Tmax == -1:
+		sys.stderr.write("Tmax not set yet :)")
+		sys.exit(-1)
+	else:
+		return stateOfCharge_vec[T-t]
+
+def Energy(soc):
+	"""
+	@check sunil update this
+	"""
+	return 0
+
+def gasolinePrice(t):
+	# @sunil @check
+	return gasolinePrice[t]
+
+
 def costfuction_p(t):
 	"""
 		cost function while car is plugged into charging station
