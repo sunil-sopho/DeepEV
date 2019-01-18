@@ -1,6 +1,7 @@
 import sys
 from math import *
 from array import *
+from battery import *
 
 chargerEffeciency = 1
 conversionConstant = 1 #don't know @check @sunil
