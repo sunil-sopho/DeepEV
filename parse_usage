@@ -1,0 +1,7 @@
+#! /bin/bash
+
+for file in $1/*; do
+    filename="$(basename "$file")";
+    fin="$1/$filename";
+    python usage_parser.py $fin $2;
+done

@@ -20,15 +20,16 @@ for ch in raw_file:
          count += 1
 
 data = sections[-1]
-data = data.split('\\r\\n\'b\'')
+data = data.split('\\n\'b\'')
 data.pop(0)
+data.pop(-1)
 
 data_tabular = []
 for row in data:
-    extracted = row.split()
+    extracted = row.split('\\t')
     if(len(extracted)!=0):
-        extracted.pop(0)
-        extracted.pop(-1)
+        extracted.pop(1)
+        extracted.pop(-2)
         data_tabular += [extracted]
 
 directory = args[2]
