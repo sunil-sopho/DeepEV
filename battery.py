@@ -17,7 +17,7 @@ Qnom = 45
 np = Qnom/Qcell
 
 def getTch():
-	soc_at_zero =  # dont know please help @check
+	soc_at_zero =  0.1 # dont know please help @check
 	vstar = ns*(vmax - vmin)
 	Imi = -1
 	T1 = -1

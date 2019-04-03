@@ -2,6 +2,7 @@ import sys
 from math import *
 from array import *
 from battery import *
+from data_handler import *
 
 chargerEffeciency = 1
 conversionConstant = 1 #don't know @check @sunil
@@ -161,3 +162,15 @@ def getAstar(tmax):
 	return astar
 
 
+def fillData(mode):
+	if mode == "p":
+		dat = get_data("4");
+		# @sunil later sync dates too for now just take data
+		print(dat[0][['HOEP']].iloc[0])
+	elif mode== "u":
+		print()
+	else:
+		print()
+
+if __name__ == '__main__':
+	fillData("p")
