@@ -20,6 +20,7 @@ for ch in raw_file:
          count += 1
 
 data = sections[-1]
+# print (data)
 data = data.split('\\n\'b\'')
 data.pop(0)
 data.pop(-1)
