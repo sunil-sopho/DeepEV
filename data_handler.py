@@ -75,3 +75,9 @@ def sync_power_usage(base, to_sync):
         synced.append(df)
 
     return synced
+
+def get_synced_usage():
+    dat = []
+    dat.append(pd.read_csv("datasets/1/weekday_merge.csv",error_bad_lines=False))
+    dat.append(pd.read_csv("datasets/1/weekend_merge.csv",error_bad_lines=False))
+    return dat
