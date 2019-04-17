@@ -32,6 +32,18 @@ def get_data(arguments):
     # print(data)
     return data
 
+"""
+args :-
+    @base : "7"
+    @to_sync : "2"
+
+output :-
+    v -- list of dataframes
+    v[0] -- weekday t,speed,power
+    v[1] -- weekend t,speed,power
+
+"""
+
 def sync_power_usage(base, to_sync):
     dat1 = get_data(base)
     dat2 = get_data(to_sync)
@@ -43,7 +55,7 @@ def sync_power_usage(base, to_sync):
         delimiter = 0
         df = pd.DataFrame(0,index=np.arange(dat1[i].size),columns=['Speed','Power'])
 
-        print ("i = ", i)
+        # print ("i = ", i)
         for j in range(dat1[i].size):
             print (j)
             if(dat1[i].iloc[j,0] == 0):

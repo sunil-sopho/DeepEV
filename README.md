@@ -15,3 +15,12 @@ Data collected is between 2008-09
 
 
 ## Control Flow
+|
+|-
+|-
+|-
+
+## Tasks needed
+[ ] SOC calculation
+[ ] Energy Calculation based in Soc
+

@@ -4,6 +4,8 @@ from array import *
 from battery import *
 from data_handler import *
 
+import random
+
 chargerEffeciency = 1
 conversionConstant = 1 #don't know @check @sunil
 """
@@ -13,8 +15,8 @@ conversionConstant = 1 #don't know @check @sunil
 Tmax = -1
 a_vec = []
 stateOfCharge_vec = []
-gasolinePrice = []
-Cel = []
+gasolinePrice_vec = []
+Cel_vec = []
 Edis = []
 
 def a(t):
@@ -28,14 +30,14 @@ def a(t):
 		sys.stderr.write("Tmax not set yet :)")
 		sys.exit(-1)
 	else:
-		return a_vec[T-t]
+		return a_vec[(Tmax-t-1)]
 
 def  Cel(t):
 	"""
 		cost of electricity at time t
 		|- needs to be setted by a setter
 	"""
-	return Cel_vec[t]
+	return Cel_vec[int(t/3600)]
 
 
 
@@ -47,13 +49,13 @@ def  stateOfCharge(t):
 		sys.stderr.write("Tmax not set yet :)")
 		sys.exit(-1)
 	else:
-		return stateOfCharge_vec[T-t]
+		return stateOfCharge_vec[Tmax-t-1]
 
 def Energy(soc):
 	"""
 	@check sunil update this
 	"""
-	return 0
+	return 10
 
 def gasolinePrice(t):
 	"""
@@ -61,7 +63,7 @@ def gasolinePrice(t):
 	 |- needs pre setting using setter
 	# @sunil @check
 	"""
-	return gasolinePrice[t]
+	return gasolinePrice_vec[t]
 
 def Edis(t):
 	"""
@@ -163,14 +165,42 @@ def getAstar(tmax):
 
 
 def fillData(mode):
+	dsize = 10
 	if mode == "p":
+
 		dat = get_data("4");
 		# @sunil later sync dates too for now just take data
-		print(dat[0][['HOEP']].iloc[0])
+		# print(float(dat[0][['HOEP']].iloc[0]))
+		# Electicity price set
+		for i in range(dsize):
+			Cel_vec.append(float(dat[0][2].iloc[i+1]))
+		global Tmax
+		Tmax = 3600*dsize
+
+		for i in range(Tmax):
+			a_vec.append(random.randint(1,101)%2);
+			stateOfCharge_vec.append(random.randint(1,101)/3);
+
 	elif mode== "u":
-		print()
+		dat = get_data("6")
+		print(dat[0].iloc[[0]])
+
+		for i in range(int(dsize/24) +1):
+			# gasolinePrice_vec.append(float(dat[0]['Ontario Average/Moyenne provinciale'].iloc[i]))
+			gasolinePrice_vec.append(float(dat[0][11].iloc[i+1]))
+
+		dat = sync_power_usage("7","2")
+		print(dat)
+		# print()
 	else:
 		print()
 
 if __name__ == '__main__':
 	fillData("p")
+	# print(Tmax)
+	# for i in range(Tmax):
+	# 	print(costfuction_p(i))
+
+	# fill data for u equation too
+	fillData("u")
+
